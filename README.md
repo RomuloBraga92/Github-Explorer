@@ -10,12 +10,11 @@
     <img src="public/apresentacao.gif">
 </h1>
 
-# Indice
+# Índice
 
 - [Sobre](#-sobre)
 - [Tecnologias Utilizadas](#-tecnologias-utilizadas)
 - [Como baixar o projeto](#-como-baixar-o-projeto)
-- [Licença](#-licença)
 
 ## 🚀 Sobre a aplicação
 
@@ -45,11 +44,6 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias
     # Iniciar o projeto
     $ yarn start
 ```
-
-
-## 🗓 Licença
-
-Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para mais detalhes.
 
 ---
 Criado com ❤️ por Romulo Braga
