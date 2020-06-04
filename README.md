@@ -10,6 +10,10 @@
     <img src="public/apresentacao.gif">
 </h1>
 
+<h1 align='center'>
+  <img src="https://ik.imagekit.io/rmpz8b4ytr/gitexplorer_dCGHY6oB_.gif">
+</h1>
+
 # Índice
 
 - [Sobre](#-sobre)
