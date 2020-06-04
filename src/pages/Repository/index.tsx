@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { useRouteMatch, Link } from 'react-router-dom';
-import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import React, { useEffect, useState, useContext } from 'react';
+import { useRouteMatch } from 'react-router-dom';
+import { FiChevronRight } from 'react-icons/fi';
+import { ThemeContext } from 'styled-components';
 
-import { Header, RepositoryInfo, Issues } from './styles';
-import logo from '../../assets/logo.svg';
+import { RepositoryInfo, Issues } from './styles';
 import api from '../../services/api';
 
 interface RepositoryParams {
@@ -35,6 +35,8 @@ const Repository: React.FC = () => {
   const [repository, setRepository] = useState<Repository | null>(null);
   const [issues, setIssues] = useState<Issue[]>([]);
 
+  const { title } = useContext(ThemeContext);
+
   const { params } = useRouteMatch<RepositoryParams>();
 
   useEffect(() => {
@@ -48,14 +50,6 @@ const Repository: React.FC = () => {
 
   return (
     <>
-      <Header>
-        <img src={logo} alt="logo" />
-        <Link to="/">
-          <FiChevronLeft size={16} />
-          Voltar
-        </Link>
-      </Header>
-
       {repository && (
         <RepositoryInfo>
           <header>
@@ -85,7 +79,7 @@ const Repository: React.FC = () => {
         </RepositoryInfo>
       )}
 
-      <Issues>
+      <Issues themeColor={title}>
         {issues.map((issue) => (
           <a href={issue.html_url} key={issue.id}>
             <div>

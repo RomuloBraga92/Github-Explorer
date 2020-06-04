@@ -1,9 +1,9 @@
-import React, { useState, FormEvent, useEffect } from 'react';
+import React, { useState, FormEvent, useEffect, useContext } from 'react';
 import { FiChevronRight } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
+import { ThemeContext } from 'styled-components';
 
-import { Title, Form, Repository, Error } from './styles';
-import logo from '../../assets/logo.svg';
+import { Title, Form, Repository, Error, Button } from './styles';
 import api from '../../services/api';
 
 interface Repository {
@@ -28,6 +28,8 @@ const Dashboard: React.FC = () => {
     }
     return [];
   });
+
+  const { title } = useContext(ThemeContext);
 
   useEffect(() => {
     localStorage.setItem(
@@ -59,21 +61,26 @@ const Dashboard: React.FC = () => {
   }
   return (
     <>
-      <img src={logo} alt="logo" />
       <Title>Explore Repositórios no Github</Title>
-      <Form hasError={!!inputError} onSubmit={handleAddRepository}>
+      <Form
+        hasError={!!inputError}
+        themeColor={title}
+        onSubmit={handleAddRepository}
+      >
         <input
           type="text"
           value={newRepo}
           onChange={(event) => setNewRepo(event.target.value)}
           placeholder="Digite o nome do repositório"
         />
-        <button type="submit">Pesquisar</button>
+        <Button type="submit" themeColor={title}>
+          Pesquisar
+        </Button>
       </Form>
 
       {inputError && <Error>{inputError}</Error>}
 
-      <Repository>
+      <Repository themeColor={title}>
         {repositories.map((repository) => (
           <Link
             to={`/repository/${repository.full_name}`}

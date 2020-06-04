@@ -1,26 +1,9 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { shade } from 'polished';
 
-export const Header = styled.header`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  a {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: #a8a8b3;
-    transition: color 0.2s;
-
-    &:hover {
-      color: #666;
-    }
-
-    svg {
-      margin-right: 4px;
-    }
-  }
-`;
+interface ThemeProps {
+  themeColor: string;
+}
 
 export const RepositoryInfo = styled.section`
   margin-top: 80px;
@@ -76,7 +59,7 @@ export const RepositoryInfo = styled.section`
   }
 `;
 
-export const Issues = styled.div`
+export const Issues = styled.div<ThemeProps>`
   margin-top: 80px;
 
   a {
@@ -90,6 +73,17 @@ export const Issues = styled.div`
     display: flex;
     align-items: center;
     transition: transform 0.2s;
+
+    ${(props) =>
+      props.themeColor === 'dark' &&
+      css`
+        background: #312e38;
+        border: 1px solid #fff;
+
+        &:hover {
+          background: ${shade(0.1, '#312e38')};
+        }
+      `}
 
     & + a {
       margin-top: 16px;
@@ -106,6 +100,12 @@ export const Issues = styled.div`
       strong {
         font-size: 20px;
         color: #3d3d4d;
+
+        ${(props) =>
+          props.themeColor === 'dark' &&
+          css`
+            color: #fff;
+          `}
       }
 
       p {

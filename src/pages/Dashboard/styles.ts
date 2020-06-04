@@ -3,6 +3,11 @@ import { shade } from 'polished';
 
 interface FormProps {
   hasError: boolean;
+  themeColor: string;
+}
+
+interface ThemeProps {
+  themeColor: string;
 }
 
 export const Title = styled.h1`
@@ -33,28 +38,60 @@ export const Form = styled.form<FormProps>`
         border-color: #c53030;
       `}
 
+    ${(props) =>
+      props.themeColor === 'dark' &&
+      css`
+        background: #312e38;
+        color: #fff;
+        border: 1px solid #fff;
+
+        &:hover {
+          background: ${shade(0.1, '#3a3a3a')};
+        }
+
+        &::placeholder {
+          color: #fff;
+        }
+      `}
+
     &::placeholder {
       color: #a8a8b3;
     }
   }
-
-  button {
-    width: 210px;
-    height: 70px;
-    background: #04d361;
-    border-radius: 0 5px 5px 0;
-    border: 0;
-    color: #fff;
-    font-weight: bold;
-    transition: background-color 0.2s;
-
-    &:hover {
-      background: ${shade(0.1, '#04d361')};
-    }
-  }
 `;
 
-export const Repository = styled.div`
+export const Button = styled.button<ThemeProps>`
+  width: 210px;
+  height: 70px;
+  border-radius: 0 5px 5px 0;
+  border: 0;
+  color: #fff;
+  font-weight: bold;
+  transition: background-color 0.2s;
+
+  ${(props) =>
+    props.themeColor === 'light' &&
+    css`
+      background: #04d361;
+
+      &:hover {
+        background: ${shade(0.1, '#04d361')};
+      }
+    `}
+
+  ${(props) =>
+    props.themeColor === 'dark' &&
+    css`
+      background: #034078;
+      border: 1px solid #fff;
+
+      &:hover {
+        background: ${shade(0.1, '#034078')};
+      }
+    `}
+`;
+
+export const Repository = styled.div<ThemeProps>`
   margin-top: 80px;
   max-width: 700px;
 
@@ -69,6 +106,17 @@ export const Repository = styled.div`
     display: flex;
     align-items: center;
     transition: transform 0.2s;
+
+    ${(props) =>
+      props.themeColor === 'dark' &&
+      css`
+        background: #312e38;
+        border: 1px solid #fff;
+
+        &:hover {
+          background: ${shade(0.1, '#312e38')};
+        }
+      `}
 
     & + a {
       margin-top: 16px;
@@ -91,6 +139,12 @@ export const Repository = styled.div`
       strong {
         font-size: 20px;
         color: #3d3d4d;
+
+        ${(props) =>
+          props.themeColor === 'dark' &&
+          css`
+            color: #fff;
+          `}
       }
 
       p {
